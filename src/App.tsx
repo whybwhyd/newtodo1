@@ -3,15 +3,15 @@ import { v4 as uuid } from "uuid";
 import "./App.css";
 import CardItem from "./CardItem";
 
+export interface TodoType {
+  id: string;
+  boxTitle: string;
+  boxContent: string;
+  boxDate: string;
+  isDone: boolean;
+}
 const App = () => {
-  interface Todo {
-    id: string;
-    boxTitle: string;
-    boxContent: string;
-    boxDate: string;
-    isDone: boolean;
-  }
-  const initialTodos: Todo[] = [
+  const initialTodos: TodoType[] = [
     {
       id: uuid(),
       boxTitle: "리액트 공부하기",
@@ -42,7 +42,7 @@ const App = () => {
     },
   ];
 
-  const [cards, setCards] = useState<Todo[]>(initialTodos);
+  const [cards, setCards] = useState<TodoType[]>(initialTodos);
   const [boxTitle, setBoxTitle] = useState<string>("");
   const [boxContent, setBoxContent] = useState<string>("");
   const [boxDate, setBoxDate] = useState<string>("");
@@ -61,7 +61,7 @@ const App = () => {
   };
 
   const addCardHandler = () => {
-    const newCard: Todo = {
+    const newCard: TodoType = {
       id: uuid(),
       boxTitle: boxTitle,
       boxContent: boxContent,
@@ -76,7 +76,7 @@ const App = () => {
   };
 
   const handleCbtn = (id: string) => {
-    const doneCardList = cards.map((card: Todo) => {
+    const doneCardList = cards.map((card: TodoType) => {
       if (card.id === id) {
         return {
           ...card,
@@ -100,7 +100,7 @@ const App = () => {
 
         <div className="inputBox">
           <div className="boxTitle">
-            제목 {""}
+            제목
             <input
               type="text"
               id="titleInput"
@@ -111,7 +111,7 @@ const App = () => {
           </div>
 
           <div className="boxContent">
-            내용 {""}
+            내용
             <input
               type="text"
               id="contentInput"
@@ -122,7 +122,7 @@ const App = () => {
           </div>
 
           <div className="boxDate">
-            날짜 {""}
+            날짜
             <input
               type="text"
               id="dateInput"
@@ -141,8 +141,8 @@ const App = () => {
           <div className="mainFont">DO-ing</div>
           <div className="style">
             {cards
-              .filter((card: Todo) => card.isDone !== true)
-              .map((card: Todo) => {
+              .filter((card: TodoType) => card.isDone !== true)
+              .map((card: TodoType) => {
                 return (
                   <CardItem
                     card={card}
@@ -160,8 +160,8 @@ const App = () => {
 
           <div className="style">
             {cards
-              .filter((card: Todo) => card.isDone === true)
-              .map((card: Todo) => {
+              .filter((card: TodoType) => card.isDone === true)
+              .map((card: TodoType) => {
                 return (
                   <CardItem
                     card={card}

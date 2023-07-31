@@ -1,22 +1,14 @@
-import React from 'react';
-
-interface Todo {
-  id: string;
-  boxTitle: string;
-  boxContent: string;
-  boxDate: string;
-  isDone: boolean;
-}
+import React from 'react'
+import {TodoType} from "./App"
 
 interface CardItemProps {
-  card:Todo
+  card: TodoType
   key:string
   handleDelete:(id:string)=>void;
   handleCbtn:(id:string)=>void;
 }
-function CardItem({card,key,handleDelete,handleCbtn}:CardItemProps) {
+function CardItem({card,handleDelete,handleCbtn}:CardItemProps) {
   const btnName = card.isDone ? '취소' : '완료';
-
   return (
     <div className="squareStyle">
       <div>
